@@ -1,0 +1,38 @@
+.row{
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+.visible{
+    display: flex;
+}
+
+.invisible{
+    display: none;
+}
+
+#quiz{
+    display: none;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question{
+    width: 50%;
+    text-align: left;
+}
+
+#answers{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}

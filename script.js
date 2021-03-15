@@ -7,14 +7,15 @@ var answersEl = document.getElementById('answers');
 
 
 var questions = [
-    {id:1, question: "1e question", answers:["This is the first answer","2","3","4"], correctAnswer:"3"},
-    {id:2, question: "2e question", answers:["1","2","3","4"], correctAnswer:"1"},
-    {id:3, question: "bluh", answers:["1","2","3","4"], correctAnswer:"3"},
-    {id:4, question: "bleh", answers:["1","2","3","4"], correctAnswer:"3"}
+    {id:1, question: "1e question", answers:["This is the first answer","2","3","4"], correctAnswerNumber:"3"},
+    {id:2, question: "2e question", answers:["1","2","3","4"], correction:[true,false,false,false]},
+    {id:3, question: "bluh", answers:["1","2","3","4"], correction:[true,false,false,false]},
+    {id:4, question: "bleh", answers:["1","2","3","4"], correction:[true,false,false,false]}
 ]
 
 var score = 0
 
+var state = 0
 
 function countdown() {
     var timeLeft = 5;
@@ -26,42 +27,39 @@ function countdown() {
         timerEl.textContent = timeLeft;
         timeLeft--;
       } else {
-         timerEl.textContent = '';
+         timerEl.textContent = 0;
         clearInterval(timeInterval);
       }
     }, 1000);
   } 
 
   function startQuiz(){
-    // Hide the Welcome Quiz Code screen and makes the Quiz section appear
-    quizEl.style.display = "flex"
-    startMenu.style.display = "none"
-
-    // Display the 1st question  
-    questionEl.textContent = questions[0].question;
-    questionEl.style.display= "block"
-    questionEl.setAttribute("id",questions[0].id)
-
-    // Display the answer choices elements for the 1st question
-    for(var i=0;i<questions.length;i++){
-        var answerChoice = document.createElement("BUTTON");
-        var textnode = document.createTextNode(questions[0].answers[i]);
-        answerChoice.className = "col-12 btn btn-outline-primary"
-        answerChoice.setAttribute("id","answer" + (i+1))
-        answerChoice.appendChild(textnode);
-        answersEl.appendChild(answerChoice);
-        
-        var answer1 = document.getElementById('answer1')
-        var answer2 = document.getElementById('answer2')
-        var answer3 = document.getElementById('answer3')
-        var answer4 = document.getElementById('answer4')
-
-
-    }
-    countdown()
+    quizEl.style.display = "flex";
+    startMenu.style.display = "none";
+    countdown();
+    generateQuestion();
+    generateAnswers();
+    state++;    
   }
 
 
-  
 
-  startBtn.onclick = startQuiz;
+function generateQuestion(){
+    questionEl.textContent = questions[state].question;
+    questionEl.style.display= "block"
+    questionEl.setAttribute("id",questions[state].id)
+}
+
+function generateAnswers(){
+    for(var i=0;i<questions.length;i++){
+        var answerChoice = document.createElement("BUTTON");
+        var textnode = document.createTextNode(questions[state].answers[i]);
+        answerChoice.className = "col-12 btn btn-outline-primary"
+        answerChoice.setAttribute("id","answerChoice" + state + "-" + (i+1))
+        answerChoice.appendChild(textnode);
+        answersEl.appendChild(answerChoice);
+    }
+}
+ 
+
+startBtn.onclick = startQuiz;

@@ -1,16 +1,13 @@
-var timerEl = document.getElementById('countdown');
-var startMenu = document.getElementById('start-menu');
-var startBtn = document.getElementById('start');
-var quizEl = document.getElementById('quiz');
+
 var questionEl = document.getElementById('question');
 var answersEl = document.getElementById('answers');
 
 
 var questions = [
     {id:1, question: "1e question", answers:["This is the first answer","2","3","4"], correctAnswerNumber:"3"},
-    {id:2, question: "2e question", answers:["1","2","3","4"], correction:[true,false,false,false]},
-    {id:3, question: "bluh", answers:["1","2","3","4"], correction:[true,false,false,false]},
-    {id:4, question: "bleh", answers:["1","2","3","4"], correction:[true,false,false,false]}
+    {id:2, question: "2e question", answers:["1","2","3","4"], correctAnswerNumber:"3"},
+    {id:3, question: "bluh", answers:["1","2","3","4"], correctAnswerNumber:"3"},
+    {id:4, question: "bleh", answers:["1","2","3","4"], correctAnswerNumber:"3"}
 ]
 
 var score = 0
@@ -21,33 +18,32 @@ function countdown() {
     var timeLeft = 5;
     var timeInterval = setInterval(function() {
       if (timeLeft > 1) {
-        timerEl.textContent = timeLeft;
+        $("#countdown").text(timeLeft)
         timeLeft--;
       } else if (timeLeft === 1) {
-        timerEl.textContent = timeLeft;
+        $("#countdown").text(timeLeft)
         timeLeft--;
       } else {
-         timerEl.textContent = 0;
+        $("#countdown").text(0)
         clearInterval(timeInterval);
       }
     }, 1000);
   } 
 
   function startQuiz(){
-    quizEl.style.display = "flex";
-    startMenu.style.display = "none";
+    $("#quiz").css("display","flex")
+    $("#start-menu").css("display","none")
     countdown();
     generateQuestion();
+    state++;  
     generateAnswers();
-    state++;    
   }
 
 
 
 function generateQuestion(){
-    questionEl.textContent = questions[state].question;
-    questionEl.style.display= "block"
-    questionEl.setAttribute("id",questions[state].id)
+    $("#question").text(questions[state].question)
+    $("#question").attr("id",`${questions[state].id}`)  
 }
 
 function generateAnswers(){
@@ -59,7 +55,16 @@ function generateAnswers(){
         answerChoice.appendChild(textnode);
         answersEl.appendChild(answerChoice);
     }
+    var answerChoice12 = document.getElementById("answerChoice1-2");
+    answerChoice12.onclick = checkAnswer
 }
  
+function checkAnswer(){
+ 
+  console.log("bwahahaha")
+} 
 
-startBtn.onclick = startQuiz;
+
+
+
+$("#start").click(function(){startQuiz()})

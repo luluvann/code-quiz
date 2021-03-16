@@ -4,7 +4,7 @@ var answersEl = document.getElementById('answers');
 
 
 var questions = [
-    {id:1, question: "1e question", answers:["This is the first answer","2","3","4"], correctAnswerNumber:"3"},
+    {id:1, question: "1e question", answers:["This is the first answer","2","3","4","5"], correctAnswerNumber:"3"},
     {id:2, question: "2e question", answers:["1","2","3","4"], correctAnswerNumber:"3"},
     {id:3, question: "bluh", answers:["1","2","3","4"], correctAnswerNumber:"3"},
     {id:4, question: "bleh", answers:["1","2","3","4"], correctAnswerNumber:"3"}
@@ -34,29 +34,24 @@ function countdown() {
     $("#quiz").css("display","flex")
     $("#start-menu").css("display","none")
     countdown();
-    generateQuestion();
     state++;  
+    generateQuestion();
     generateAnswers();
   }
 
 
 
 function generateQuestion(){
-    $("#question").text(questions[state].question)
-    $("#question").attr("id",`${questions[state].id}`)  
+    $("#question").text(questions[state-1].question)
+    $("#question").attr("id",`${questions[state-1].id}`)
+    $("#state").text(state)  
 }
 
 function generateAnswers(){
-    for(var i=0;i<questions.length;i++){
-        var answerChoice = document.createElement("BUTTON");
-        var textnode = document.createTextNode(questions[state].answers[i]);
-        answerChoice.className = "col-12 btn btn-outline-primary"
-        answerChoice.setAttribute("id","answerChoice" + state + "-" + (i+1))
-        answerChoice.appendChild(textnode);
-        answersEl.appendChild(answerChoice);
+    for(var i=0;i<questions[state-1].answers.length;i++){
+        var answer = questions[state-1].answers[i]
+        $("#answers").append(`<button class="col-12 btn btn-outline-primary" id=${i+1}>${answer}</button>`)
     }
-    var answerChoice12 = document.getElementById("answerChoice1-2");
-    answerChoice12.onclick = checkAnswer
 }
  
 function checkAnswer(){

@@ -10,17 +10,7 @@ p{
     text-align: center;
 }
 
-.visible{
-    display: flex;
-}
-
-.invisible{
-    display: none;
-}
-
 #quiz{
-    display: none;
-    display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     align-items: center;
@@ -34,5 +24,36 @@ p{
 #answers{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width:50%;
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    padding:10px 20px
+}
+
+li{
+    text-align: left;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.input{
+    display: flex;
+}
+
+#correction{
+    margin-top: 30px;
+    border-top:1px solid grey;
+    justify-content: center;
+    align-content: center;
+    font-style: italic;
+    width:60%
 }

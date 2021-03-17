@@ -8,6 +8,7 @@ var questions = [
 
 //initial state when page loads
 var state = 0
+var score = 0
 var questionNumber = state-1
 $("#state").text(state)
 $("#quiz").css("display","none")
@@ -41,6 +42,8 @@ function generateQuestion(){
   if(state > questions.length){
       $("#question").remove()
       $("#initials").css("display","flex")
+      $("#score").append(score)
+      console.log(score)
   } else {
       $("#question").text(questions[state-1].question)
   }

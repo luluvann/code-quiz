@@ -100,14 +100,38 @@ function startQuiz(){
   checkAnswerAndNext()
 }
 
+
+function buildHighScoresEntry(initials,score){
+  var highScores =  JSON.parse(localStorage.getItem("highScores"))
+  if(!highScores){
+    var highScores = []
+    var newEntry = {"initials":initials,"score":score}
+    highScores.push(newEntry)
+    localStorage.setItem("highScores",JSON.stringify(highScores))
+  } else {
+    var newEntry = {"initials":initials,"score":score}
+    highScores.push(newEntry)
+    localStorage.setItem("highScores",JSON.stringify(highScores))
+  }
+}
+/* 
+function scoreTable(){
+  var highScores =  JSON.parse(localStorage.getItem("highScores"))
+  for(var i = 0; i < highScores.length; i++){
+    $("#")
+  }
+} */
+
 // Actionable buttons
 $("#start").click(function(){startQuiz()})
 
 $("#initials").submit(function(event){
+  event.preventDefault()
   updateState()
   $("#initials").css("display","none")
   $("#high-scores").css("display","flex")
   var initials = $("#myInitials").val()
-  console.log(initials)
-  event.preventDefault()
+
+  buildHighScoresEntry(initials,score)
+
 })

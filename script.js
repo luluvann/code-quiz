@@ -78,14 +78,14 @@ function checkAnswerAndNext() {
   $("#answers").on("click", "button", function() {
      var answerID = $(this).attr("id")
      if(answerID == state + "-" + questions[state-1].correctAnswerIndex){
-         nextQuestion()
-         score++
+          score++ 
+          nextQuestion()
          $("#correction").css("display","flex")
-         $("#correction").text("You answered correctly to the previous question!")
+         $("#correction").text("You answered correctly to the previous question!").css("color","green")
      } else {
           nextQuestion()
           $("#correction").css("display","flex")
-          $("#correction").text("You answered incorrectly to the previous question!")
+          $("#correction").text("You answered incorrectly to the previous question!").css("color","red")
      }
   })
 }

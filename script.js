@@ -114,13 +114,13 @@ function buildHighScoresEntry(initials,score){
     localStorage.setItem("highScores",JSON.stringify(highScores))
   }
 }
-/* 
+
 function scoreTable(){
   var highScores =  JSON.parse(localStorage.getItem("highScores"))
   for(var i = 0; i < highScores.length; i++){
-    $("#")
+    $("#highScoresTable").append(`<tr> <td>${highScores[i].initials}</td> <td>${highScores[i].score}</td></tr>`)
   }
-} */
+}
 
 // Actionable buttons
 $("#start").click(function(){startQuiz()})
@@ -133,5 +133,6 @@ $("#initials").submit(function(event){
   var initials = $("#myInitials").val()
 
   buildHighScoresEntry(initials,score)
+  scoreTable()
 
 })

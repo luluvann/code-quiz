@@ -9,7 +9,6 @@ var questions = [
 //initial state when page loads
 var state = 0
 var score = 0
-var questionNumber = state-1
 $("#state").text(state)
 $("#quiz").css("display","none")
 $("#initials").css("display","none")
@@ -141,4 +140,17 @@ $("#initials").submit(function(event){
 $("#clearHighScores").click(function(){
   localStorage.removeItem("highScores")
   $(".player").remove()
+})
+
+$("#goBack").click(function(){
+  var state = 0
+  var score = 0
+  $("#start-menu").css("display","flex")
+  $("#start").click(function(){startQuiz()})
+  $("#state").text(state)
+  $("#quiz").css("display","none")
+  $("#initials").css("display","none")
+  $("#high-scores").css("display","none")
+  $("#correction").css("display","none")
+  
 })

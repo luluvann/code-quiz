@@ -118,7 +118,7 @@ function buildHighScoresEntry(initials,score){
 function scoreTable(){
   var highScores =  JSON.parse(localStorage.getItem("highScores"))
   for(var i = 0; i < highScores.length; i++){
-    $("#highScoresTable").append(`<tr> <td>${highScores[i].initials}</td> <td>${highScores[i].score}</td></tr>`)
+    $("#highScoresTable").append(`<tr class="player"> <td>${highScores[i].initials}</td> <td>${highScores[i].score}</td></tr>`)
   }
 }
 
@@ -127,6 +127,7 @@ $("#start").click(function(){startQuiz()})
 
 $("#initials").submit(function(event){
   event.preventDefault()
+  $("#correction").remove()
   updateState()
   $("#initials").css("display","none")
   $("#high-scores").css("display","flex")
@@ -135,4 +136,9 @@ $("#initials").submit(function(event){
   buildHighScoresEntry(initials,score)
   scoreTable()
 
+})
+
+$("#clearHighScores").click(function(){
+  localStorage.removeItem("highScores")
+  $(".player").remove()
 })

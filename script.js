@@ -118,7 +118,7 @@ function buildHighScoresEntry(initials,score){
 function scoreTable(){
   var highScores =  JSON.parse(localStorage.getItem("highScores"))
   for(var i = 0; i < highScores.length; i++){
-    $("#highScoresTable").append(`<tr class="player"> <td>${highScores[i].initials}</td> <td>${highScores[i].score}</td></tr>`)
+    $("#highScoresTable").append(`<button type="button" class="list-group-item player">${highScores[i].initials} - ${highScores[i].score}`)
   }
 }
 

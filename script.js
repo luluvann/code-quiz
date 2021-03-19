@@ -4,11 +4,10 @@ var questions = [
   {question: "A very useful tool used during development and debugging for printing content to the debugger is ____ :", answers:["javascript","terminal/bash","for loops","console.log"], correctAnswerIndex:3},
   {question: "Arrays in Javascript can be used to store ____ :", answers:["numbers and strings","other arrays","booleans","all of the above"], correctAnswerIndex:3}
 ]
-
-
 //initial state when page loads
 var state = 0
 var score = 0
+var timeLeft = 75
 $("#state").text(state)
 $("#quiz").css("display","none")
 $("#initials").css("display","none")
@@ -16,8 +15,8 @@ $("#high-scores").css("display","none")
 $("#correction").css("display","none")
 
 //Independent functions
-function countdown() {
-  var timeLeft = 5;
+function countdown(timeLeft) {
+
   var timeInterval = setInterval(function() {
     if (timeLeft > 1) {
       $("#countdown").text(timeLeft)
@@ -39,36 +38,35 @@ function updateState(){
 
 function generateQuestion(){
   if(state > questions.length){
-      $("#question").remove()
+      $("#question").empty()
+      $("#question").css("display","none")
       $("#initials").css("display","flex")
       $("#score").append(score)
       console.log(score)
   } else {
+      $("#question").empty()
+      $("#question").css("display","flex")
       $("#question").text(questions[state-1].question)
   }
 }
 
 function generateAnswers(){
   if(state > questions.length){
-      $("#answers").remove()
+      $("#answers").empty()
+      $("#answers").css("display","none")
   } else {
+      $("#answers").empty()
+      $("#answers").css("display","flex")
       for(var i=0;i<questions[state-1].answers.length;i++){
-      var answer = questions[state-1].answers[i]
-      $("#answers").append(`<button class="col-12 btn btn-outline-primary" id=${state}-${i}><li>${answer}</li></button>`)
+        var answer = questions[state-1].answers[i]
+        $("#answers").append(`<button class="col-12 btn btn-outline-primary" id=${state}-${i}><li>${answer}</li></button>`)
       }
   }
 }
 
-function erasePreviousAnswers(){
-  $(`[id*=${state-1}-]`).each(function() {
-      $(this).css("display","none")})
-}
-
-
 //Groups of functions
 function nextQuestion(){
   updateState()
-  erasePreviousAnswers()
   generateQuestion()
   generateAnswers()
 }
@@ -92,11 +90,10 @@ function checkAnswerAndNext() {
 function startQuiz(){
   $("#start-menu").css("display","none")
   $("#quiz").css("display","flex")
-  countdown();
+  countdown(75);
   updateState()
   generateQuestion();
   generateAnswers();
-  checkAnswerAndNext()
 }
 
 
@@ -116,6 +113,7 @@ function buildHighScoresEntry(initials,score){
 
 function scoreTable(){
   var highScores =  JSON.parse(localStorage.getItem("highScores"))
+  $("#highScoresTable").empty()
   for(var i = 0; i < highScores.length; i++){
     $("#highScoresTable").append(`<button type="button" class="list-group-item player">${highScores[i].initials} - ${highScores[i].score}`)
   }
@@ -126,7 +124,8 @@ $("#start").click(function(){startQuiz()})
 
 $("#initials").submit(function(event){
   event.preventDefault()
-  $("#correction").remove()
+  $("#quiz").css("display","none")
+  $("#correction").css("display","none")
   updateState()
   $("#initials").css("display","none")
   $("#high-scores").css("display","flex")
@@ -143,14 +142,15 @@ $("#clearHighScores").click(function(){
 })
 
 $("#goBack").click(function(){
-  var state = 0
-  var score = 0
+  state = 0
+  score = 0
+  timeLeft = 75
   $("#start-menu").css("display","flex")
-  $("#start").click(function(){startQuiz()})
   $("#state").text(state)
   $("#quiz").css("display","none")
   $("#initials").css("display","none")
   $("#high-scores").css("display","none")
   $("#correction").css("display","none")
-  
 })
+
+checkAnswerAndNext()

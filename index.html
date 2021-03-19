@@ -12,7 +12,13 @@
 </head>
 <body>
     <!-- <div class="col-12">State: <span id="state"></span></div> -->
-    <div class="col-12" id="timer">Time: <span id="countdown">0</span></div>
+    <div class="container" id="timer">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end" >
+                <h6>Time left: <span id="countdown">0</span></h6>
+            </div>
+        </div>
+    </div>
 
     <!--Start Menu-->
     <div id="start-menu">
@@ -40,8 +46,8 @@
         <div class="container">
             <div class="row"> <h1>All done!</h1></div>
             <div class="row"><p id="score">Your final score is </p></div>
-            <div class=" row d-flex align-items-center justify-content-center">
-                <div class="col-3"><label>Enter initials:</label></div>
+            <div class=" row d-flex align-items-center">
+                <div class="col-3 justify-content-center"><label><h6>Enter initials:</h6></label></div>
                 <div class="col-6"><input type="text" class="form-control" id="myInitials"></input></div>
                 <div class="col-3"><button type="submit" class="btn btn-primary" id="submit">Submit</button> </div>
             </div>

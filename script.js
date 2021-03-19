@@ -8,7 +8,8 @@ var questions = [
 var state = 0
 var score = 0
 var timeLeft = 75
-$("#state").text(state)
+/* $("#state").text(state) */
+$("#timer").css("display","none")
 $("#quiz").css("display","none")
 $("#initials").css("display","none")
 $("#high-scores").css("display","none")
@@ -139,6 +140,7 @@ $("#initials").submit(function(event){
 
   buildHighScoresEntry(initials,score)
   scoreTable()
+  $("#myInitials").val("")
 
 })
 

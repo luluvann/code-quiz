@@ -7,7 +7,7 @@ var questions = [
 //initial state when page loads
 var state = 0
 var score = 0
-var timeLeft = 75
+var timeLeft = 5
 /* $("#state").text(state) */
 $("#timer").css("display","none")
 $("#quiz").css("display","none")
@@ -32,6 +32,8 @@ function countdown(timeLeft) {
       timeLeft--;
     } else {
       $("#countdown").text(0)
+      $("#quiz").css("display","none")
+      $("#initials").css("display","flex")
       clearInterval(timeInterval);
     }
   }, 1000);
@@ -97,7 +99,7 @@ function startQuiz(){
   $("#start-menu").css("display","none")
   $("#quiz").css("display","flex")
   $("#timer").css("display","block")
-  countdown(75);
+  countdown(timeLeft);
   updateState()
   generateQuestion();
   generateAnswers();
@@ -152,7 +154,7 @@ $("#clearHighScores").click(function(){
 $("#goBack").click(function(){
   state = 0
   score = 0
-  timeLeft = 75
+  timeLeft = 5
   $("#start-menu").css("display","flex")
   $("#state").text(state)
   $("#quiz").css("display","none")

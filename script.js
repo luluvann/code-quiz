@@ -88,10 +88,12 @@ function checkAnswerAndNext() {
           nextQuestion()
          $("#correction").css("display","flex")
          $("#correction").text("You answered correctly to the previous question!").css("color","green")
+         $("#correction").fadeOut(2000);
      } else {
           nextQuestion()
           $("#correction").css("display","flex")
           $("#correction").text("You answered incorrectly to the previous question!").css("color","red")
+          $("#correction").fadeOut(2000);
      }
   })
 }

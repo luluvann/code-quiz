@@ -7,7 +7,7 @@ var questions = [
 //initial state when page loads
 var state = 0
 var score = 0
-var timeLeft = 5
+var timeLeft = 60
 /* $("#state").text(state) */
 $("#timer").css("display","none")
 $("#quiz").css("display","none")
@@ -34,6 +34,7 @@ function countdown(timeLeft) {
       $("#countdown").text(0)
       $("#quiz").css("display","none")
       $("#initials").css("display","flex")
+      $("#score").text(score)
       clearInterval(timeInterval);
     }
   }, 1000);
@@ -49,7 +50,7 @@ function generateQuestion(){
       $("#question").empty()
       $("#question").css("display","none")
       $("#initials").css("display","flex")
-      $("#score").append(score)
+      $("#score").text(score)
       clearInterval(timeInterval)
   } else {
       $("#question").empty()
@@ -154,7 +155,7 @@ $("#clearHighScores").click(function(){
 $("#goBack").click(function(){
   state = 0
   score = 0
-  timeLeft = 5
+  timeLeft = 60
   $("#start-menu").css("display","flex")
   $("#state").text(state)
   $("#quiz").css("display","none")

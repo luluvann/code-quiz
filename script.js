@@ -15,9 +15,14 @@ $("#high-scores").css("display","none")
 $("#correction").css("display","none")
 
 //Independent functions
+var timeInterval
+
 function countdown(timeLeft) {
 
-  var timeInterval = setInterval(function() {
+  if(timeInterval != null){
+    clearInterval(timeInterval)
+  } 
+  timeInterval = setInterval(function() {
     if (timeLeft > 1) {
       $("#countdown").text(timeLeft)
       timeLeft--;
@@ -42,7 +47,7 @@ function generateQuestion(){
       $("#question").css("display","none")
       $("#initials").css("display","flex")
       $("#score").append(score)
-      console.log(score)
+      clearInterval(timeInterval)
   } else {
       $("#question").empty()
       $("#question").css("display","flex")
@@ -90,12 +95,12 @@ function checkAnswerAndNext() {
 function startQuiz(){
   $("#start-menu").css("display","none")
   $("#quiz").css("display","flex")
+  $("#timer").css("display","block")
   countdown(75);
   updateState()
   generateQuestion();
   generateAnswers();
 }
-
 
 function buildHighScoresEntry(initials,score){
   var highScores =  JSON.parse(localStorage.getItem("highScores"))
@@ -129,6 +134,7 @@ $("#initials").submit(function(event){
   updateState()
   $("#initials").css("display","none")
   $("#high-scores").css("display","flex")
+  $("#timer").css("display","none")
   var initials = $("#myInitials").val()
 
   buildHighScoresEntry(initials,score)

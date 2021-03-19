@@ -74,6 +74,16 @@ function generateAnswers(){
 }
 
 //Groups of functions
+function startQuiz(){
+  $("#start-menu").css("display","none")
+  $("#quiz").css("display","flex")
+  $("#timer").css("display","block")
+  countdown(timeLeft);
+  updateState()
+  generateQuestion();
+  generateAnswers();
+}
+
 function nextQuestion(){
   updateState()
   generateQuestion()
@@ -90,22 +100,14 @@ function checkAnswerAndNext() {
          $("#correction").text("You answered correctly to the previous question!").css("color","green")
          $("#correction").fadeOut(2000);
      } else {
+          var newTimeLeft = $("#countdown").text() - 10 
+          countdown(newTimeLeft)
           nextQuestion()
           $("#correction").css("display","flex")
           $("#correction").text("You answered incorrectly to the previous question!").css("color","red")
           $("#correction").fadeOut(2000);
      }
   })
-}
-
-function startQuiz(){
-  $("#start-menu").css("display","none")
-  $("#quiz").css("display","flex")
-  $("#timer").css("display","block")
-  countdown(timeLeft);
-  updateState()
-  generateQuestion();
-  generateAnswers();
 }
 
 function buildHighScoresEntry(initials,score){

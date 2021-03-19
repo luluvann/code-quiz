@@ -5,7 +5,9 @@ A timed quiz on Javascript fundamentals that stores high scores
 
 ## Deployed App
 [https://luluvann.github.io/code-quiz/]
+
 ## Preview
+![](./preview_code-quiz.gif)
 
 ## Features
 - Displays timer when the quiz starts

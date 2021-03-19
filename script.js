@@ -78,6 +78,7 @@ function startQuiz(){
   $("#start-menu").css("display","none")
   $("#quiz").css("display","flex")
   $("#timer").css("display","block")
+  $("#viewHighScores").css("display","none")
   countdown(timeLeft);
   updateState()
   generateQuestion();
@@ -166,6 +167,14 @@ $("#goBack").click(function(){
   $("#initials").css("display","none")
   $("#high-scores").css("display","none")
   $("#correction").css("display","none")
+  $("#viewHighScores").css("display","block")
+})
+
+$("#viewHighScores").click(function(){
+  $("#start-menu").css("display","none")
+  $("#quiz").css("display","none")
+  $("#high-scores").css("display","block")
+  scoreTable()
 })
 
 checkAnswerAndNext()
